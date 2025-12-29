@@ -1,2 +1,51 @@
-out/
+# Build directories
 work/
+out/
+*.iso
+
+# System info (may contain sensitive data)
+system_info/
+
+# Temporary files
+*.tmp
+*.log
+*.swp
+*.swo
+*~
+
+# Cache directories
+.cache/
+__pycache__/
+
+# User-specific configs that might contain sensitive data
+airootfs/root/.ssh/
+airootfs/root/.gnupg/
+airootfs/etc/skel/.ssh/
+airootfs/etc/skel/.gnupg/
+
+# Browser and app data (large and personal)
+airootfs/etc/skel/.config/BraveSoftware/
+airootfs/etc/skel/.config/Code/
+airootfs/etc/skel/.config/discord/
+airootfs/etc/skel/.config/chromium/
+airootfs/root/.config/BraveSoftware/
+airootfs/root/.config/Code/
+airootfs/root/.config/discord/
+
+# Large cache and data directories
+airootfs/etc/skel/.cache/
+airootfs/etc/skel/.local/share/Trash/
+airootfs/root/.cache/
+airootfs/root/.local/share/Trash/
+
+# Package manager cache
+*.pkg.tar.zst
+*.pkg.tar.xz
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+.directory
