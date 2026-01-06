@@ -120,6 +120,21 @@ qemu-system-x86_64 \
   -device virtio-vga \
   -display gtk
 ```
+```bash
+startplasma-wayland
+```
+
+If that doesn't work, try:
+
+```bash
+systemctl start sddm
+```
+
+Or switch to graphical target:
+
+```bash
+systemctl isolate graphical.target
+```
 
 ## Building from Source
 
