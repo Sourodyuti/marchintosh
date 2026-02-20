@@ -1,6 +1,0 @@
-# AUR packages from your system (install these manually after installation):
-brave-bin 1:1.85.118-1
-spotify 1:1.2.79.425-1
-visual-studio-code-bin 1.107.1-1
-yay 12.5.7-1
-yay-debug 12.5.7-1
