@@ -1,0 +1,63 @@
+name: Build Archintosh ISO
+
+# Automatically trigger the workflow when a tag is pushed (e.g., git tag v1.0.0 && git push origin v1.0.0)
+on:
+  push:
+    tags:
+      - 'v*'
+  # Also allow triggering the build manually from the Actions tab
+  workflow_dispatch:
+
+# Grant the necessary permissions to create releases and upload assets
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: Build ISO
+    runs-on: ubuntu-latest
+    
+    # Run the build inside an official Arch Linux container
+    container:
+      image: archlinux:latest
+      options: --privileged
+
+    steps:
+      - name: Install dependencies
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --noconfirm git archiso qemu-img base-devel dosfstools squashfs-tools mtools xorriso sudo
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build ISO using mkarchiso
+        run: |
+          # Build the ISO
+          mkarchiso -v -w work -o out iso_profile
+
+      - name: Split ISO
+        run: |
+          # The output ISO will be in the out/ directory
+          ISO_FILE=$(ls out/*.iso | head -n 1)
+          
+          # GitHub has a 2GB file limit for releases. 
+          # Arch ISOs are often around 2.2GB. We split them into 1.5GB parts.
+          # The prefix will be archintosh-part-
+          split -b 1500M "$ISO_FILE" out/archintosh-part-
+          
+          # Print the checksum of the original ISO for reference
+          sha256sum "$ISO_FILE" > out/sha256sum.txt
+          cat out/sha256sum.txt
+          
+          # Remove the original ISO to save space
+          rm "$ISO_FILE"
+
+      - name: Create GitHub Release and Upload Assets
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            out/archintosh-part-*
+            out/sha256sum.txt
+          draft: true
+          generate_release_notes: true
