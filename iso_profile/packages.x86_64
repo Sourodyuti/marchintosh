@@ -15,7 +15,9 @@ flatpak
 git
 grub
 gst-plugin-pipewire
+intel-ucode
 inter-font
+kate
 konsole
 kscreen
 kvantum
@@ -23,6 +25,8 @@ less
 libpulse
 linux
 linux-firmware
+man-db
+man-pages
 memtest86+
 memtest86+-efi
 mkinitcpio
@@ -51,8 +55,10 @@ reflector
 sassc
 sddm
 sof-firmware
+spectacle
 squashfs-tools
 starship
+sudo
 syslinux
 tree
 ttf-fira-code
@@ -61,6 +67,7 @@ vde2
 virt-manager
 virt-viewer
 wireplumber
+xdg-utils
 zram-generator
 zsh
 zsh-autosuggestions

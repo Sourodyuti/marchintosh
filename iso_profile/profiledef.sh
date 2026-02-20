@@ -16,4 +16,5 @@ file_permissions=(
   ["/etc/shadow"]="0:0:400"
   ["/root"]="0:0:750"
   ["/root/install.sh"]="0:0:755"
+  ["/root/install_aur_packages.sh"]="0:0:755"
 )
